@@ -22,13 +22,8 @@ int main(int argc, char** argv)
     {
         int step = input[0] == 'L' ? -1 * atoi(input.substr(1).c_str()) : atoi(input.substr(1).c_str());
         pos += step;
-        
-        if (pos < 0) {
-            pos = 100 - abs (pos % 100);
-        }
-        pos = pos % 100;
 
-        if (pos == 0) {
+        if (pos % 100 == 0) {
             result++;
         }
 

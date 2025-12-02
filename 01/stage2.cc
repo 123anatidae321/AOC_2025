@@ -28,26 +28,15 @@ int main(int argc, char** argv)
     while (std::getline(file, input))
     {
         int step = input[0] == 'L' ? -1 * atoi(input.substr(1).c_str()) : atoi(input.substr(1).c_str());
-        result += abs (step/100); // 360 degrees
-        int delta = step % 100;
-
-        if (pos < 0 || pos >= 100) { std::cerr << "Bad pos " << pos << std::endl; }
-        pos += delta;
-
-        if (pos < 0) {
-            pos += 100;
-            if ((pos - delta)%100 != 0) {
+        result += floor(abs(step)/100.0);
+        if (pos != 0) {
+            int distance_to_zero = step >= 0 ? 100 - pos : pos;
+            if((abs(step) % 100) >= distance_to_zero) {
                 result++;
             }
         }
-        else {
-            result += floor((pos-1)/100);
-            pos = pos % 100;
-            if (pos == 0) {
-                result++;
-            }
-        }
-
+        pos = (pos + step) % 100;
+        if (pos < 0) pos += 100;
     }
     std::cout << "Result is " << result << std::endl;
     file.close();
