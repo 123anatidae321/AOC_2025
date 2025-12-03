@@ -3,11 +3,6 @@
 #include <vector>
 #include <math.h>
 
-/*
-# 1701089651593824 too high
-# 3121910778619
-# 31103799668619
-*/
 const size_t find_max(const std::vector<int>& v, int start, int numbers_left) {
     std::pair<int, int> local_max(start, 0);
     for (int i = start; i < v.size() - numbers_left; i++) {
